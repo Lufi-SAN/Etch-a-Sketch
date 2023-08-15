@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  width: 500px;
+  height: 500px;
+  /* gap: 0; */
+}
+
+.boxes {
+  /* width: 42px; */
+  flex: 0 0 6.25%;
+  /* width: 16px;
+  height: 16px; */
+  outline: 1px solid black;
+  background-color: aqua;
+}
+
+.hover {
+  background-color: black;
+}
