@@ -1,26 +1,41 @@
+:root {
+  --blk: black;
+  --clr: white;
+}
+
+.blackbtn {
+  background-color: var(--blk);
+}
+
+.clearbtn {
+  background-color: var(--clr);
+}
+
+.rainbowbtn {
+  --r: 0;
+  --g: 0;
+  --b: 0;
+  background-color: rgb(var(--r), var(--g), var(--b));
+}
+
 * {
   box-sizing: border-box;
 }
 
-.container {
-  padding: 20px;
-  margin: 0 auto;
+#gridContainer {
   display: flex;
-  flex-flow: row wrap;
-  width: 500px;
-  height: 500px;
-  /* gap: 0; */
+  margin: 0 auto;
+  max-width: 50%;
+  max-height: 450px;
 }
 
-.boxes {
-  /* width: 42px; */
-  flex: 0 0 6.25%;
-  /* width: 16px;
-  height: 16px; */
-  outline: 1px solid black;
-  background-color: aqua;
+.parentDiv {
+  display: flex;
+  flex-direction: column;
+  width: 30px;
 }
 
-.hover {
-  background-color: black;
+.parentDiv > * {
+  height: 30px;
+  border: 1px solid black;
 }

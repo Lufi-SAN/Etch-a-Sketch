@@ -7,8 +7,24 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <button class="button">How big a grid you want?</button>
-    <div class="container"></div>
+    <button id="button">What grid number do you want?</button>
+
+    <div id="radioContainer">
+      <div class="inputDiv">
+        <label for="blackbtn">Black</label
+        ><input type="radio" name="btn" id="blackbtn" />
+      </div>
+      <div class="inputDiv">
+        <label for="clearbtn">Eraser</label
+        ><input type="radio" name="btn" id="clearbtn" />
+      </div>
+      <div class="inputDiv">
+        <label for="rainbowbtn">Rainbow</label
+        ><input type="radio" name="btn" id="rainbowbtn" />
+      </div>
+    </div>
+
+    <div id="gridContainer"></div>
     <script src="./script.js"></script>
   </body>
 </html>

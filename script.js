@@ -1,34 +1,79 @@
-window.addEventListener("load", (e) => {
-  console.log(e);
-  let container = document.querySelector(".container");
-  for (let i = 0; i < 256; i++) {
-    const divs = document.createElement("div");
-    container.appendChild(divs);
-    divs.classList.add("boxes");
-  }
+const button = document.querySelector("#button");
+const gridContainer = document.querySelector("#gridContainer");
+const radioContainer = document.querySelector("#radioContainer");
+let colorInQuestion = "";
 
-  const divs = document.querySelectorAll(".boxes");
-  console.log(divs);
-  divs.forEach((div) => {
-    div.addEventListener("mouseover", firstFunction);
-  });
+document.addEventListener("DOMContentLoaded", dclFunction);
+
+button.addEventListener("click", function () {
+  while (gridContainer.firstChild) {
+    gridContainer.removeChild(gridContainer.firstChild);
+  }
+  let enterPrompt = prompt("Enter your preffered grid", "Max: 100");
+  let gridNumber = parseInt(enterPrompt, 10);
+  if (!isNaN(gridNumber) && gridNumber <= 100) {
+    numberOfSquares = gridNumber;
+    createDiv(numberOfSquares);
+  } else {
+    alert("Chill");
+  }
 });
 
-function firstFunction(e) {
-  console.log(this.classList.value);
-  console.log(e.target.classList.value);
-  if (e.target.classList.value === "boxes hover") {
-    e.target.classList.remove("hover");
-  } else {
-    e.target.classList.add("hover");
-  }
+radioContainer.addEventListener("change", function (event) {
+  colorInQuestion = event.target.id;
+});
+
+function dclFunction() {
+  createDiv();
 }
 
-//   function again() {
-//     divs.forEach((div) => {
-//       div.addEventListener("mouseover", (e) => {
-//         e.target.classList.remove("hover");
-//         again();
-//       });
-//     });
-//   }
+function createDiv(numberOfSquares = 16) {
+  for (let i = 0; i < numberOfSquares; i++) {
+    const div = document.createElement("div");
+    div.classList.add("parentDiv");
+    gridContainer.appendChild(div);
+  }
+
+  gridContainer.childNodes.forEach(function (node) {
+    for (let i = 0; i < numberOfSquares; i++) {
+      const innerDiv = document.createElement("div");
+      innerDiv.addEventListener("mouseover", function (event) {
+        if (colorInQuestion.trim() !== "") {
+          //then it checks length of classList of innerDiv
+          //if its 2, remove the second child
+          //then add this class
+          if (innerDiv.classList.length > 1) {
+            let indexToRemove = 1;
+            let classNameToRemove = innerDiv.classList[indexToRemove];
+            innerDiv.classList.remove(classNameToRemove);
+            if (colorInQuestion === "rainbowbtn") {
+              function getRandomNumber() {
+                return Math.floor(Math.random() * 256);
+              }
+              innerDiv.classList.add(colorInQuestion);
+              innerDiv.style.setProperty("--r", getRandomNumber());
+              innerDiv.style.setProperty("--g", getRandomNumber());
+              innerDiv.style.setProperty("--b", getRandomNumber());
+            } else {
+              innerDiv.classList.add(colorInQuestion);
+            }
+          } else {
+            if (colorInQuestion === "rainbowbtn") {
+              function getRandomNumber() {
+                return Math.floor(Math.random() * 256);
+              }
+              innerDiv.classList.add(colorInQuestion);
+              innerDiv.style.setProperty("--r", getRandomNumber());
+              innerDiv.style.setProperty("--g", getRandomNumber());
+              innerDiv.style.setProperty("--b", getRandomNumber());
+            } else {
+              innerDiv.classList.add(colorInQuestion);
+            }
+          }
+        }
+      });
+      innerDiv.classList.add("innerDiv");
+      node.appendChild(innerDiv);
+    }
+  });
+}
